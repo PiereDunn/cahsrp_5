@@ -1,4 +1,6 @@
-﻿class Programm
+﻿using System.Linq;
+
+class Programm
 {
     static void Main(string[] args)
     {
@@ -12,7 +14,7 @@
             ShiftWords(words); //Перенос слов на строку
             Console.ReadKey();
 
-            ReplaceWords(words); //Замена слов местами
+            ReplaceWords(words); //Замена слов местами и соединение
             Console.ReadKey();
         }
     }
@@ -33,36 +35,28 @@
     /// </summary>
     /// <param name="shiftwords"></param>
     /// <returns></returns>
-    static string ShiftWords(string[] shiftwords)
+    static string[] ShiftWords(string[] shiftwords)
     {
         foreach (string word in shiftwords)
         {
             Console.WriteLine($" \n{word}");
         }
-        return shiftwords[shiftwords.Length - 1];
+        return shiftwords;
     }
 
     /// <summary>
-    /// Замена слов местами
+    /// Замена слов местами и соединение
     /// </summary>
     /// <param name="replacewords"></param>
     /// <returns></returns>
     static string ReplaceWords(string[] replacewords)
     {
-        string[] strings = new string[replacewords.Length];
-        int s = 1;
+        string[] words = replacewords;
+        Array.Reverse(words);
+        string joinedwords = string.Join(" ", words);
 
-        for (int i = 0; i < replacewords.Length; i++)
-        {
-            strings[i] = replacewords[replacewords.Length - s];
-            s++;
-        }
+        Console.WriteLine($"{joinedwords}");
 
-        foreach (string word in strings)
-        {
-            Console.WriteLine($" \n{word}");
-        }
-
-        return strings[strings.Length - 1];
+        return joinedwords;
     }
 }
